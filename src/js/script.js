@@ -96,6 +96,8 @@
       console.log(thisProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
       console.log(thisProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+      console.log(thisProduct.imageWrapper);
     }
 
     initAccordion(){
@@ -184,6 +186,19 @@
             if(!optionSelected == false) {
               // reduce price variable
               price -= option.price;
+            }
+          }
+          //find image with class ="paramId-optionId" in image div
+          const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId  + '-' + optionId);
+          //check if u found it
+          if(optionImage){
+            //check if particular option is selected
+            if(optionSelected){
+              //if so show the img (add class active)
+              optionImage.classList.add(classNames.menuProduct.imageVisible);
+            } else {
+              //if not hide the img(remove class active)
+              optionImage.classList.remove(classNames.menuProduct.imageVisible);
             }
           }
 
