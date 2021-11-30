@@ -304,7 +304,7 @@
         params[paramId] = {
           label: param.label,
           options: {}
-        }
+        };
         // for every option in this category
         for(let optionId in param.options) {
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
