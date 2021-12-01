@@ -215,13 +215,15 @@
           // check if there is param with a name of paramId in formData and if it includes optionId
           if(optionSelected) {
             // check if the option is not default
-            if(!optionSelected.default == true) {
+            // if(!optionSelected.default == true) {
+            if(!optionSelected.default) {
               // add option price to price variable
               price += option.price;
             }
           } else {
             // check if the option is default
-            if(!optionSelected == false) {
+            // if(!optionSelected == false) {
+            if(optionSelected) {
               // reduce price variable
               price -= option.price;
             }
