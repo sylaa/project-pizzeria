@@ -229,7 +229,7 @@
             }
           }
           //find image with class ="paramId-optionId" in image div
-          const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId  + '-' + optionId);
+          const optionImage = thisProduct.imageWrapper.querySelector(`.${paramId}-${optionId}`);
           //check if u found it
           if(optionImage){
             //check if particular option is selected
