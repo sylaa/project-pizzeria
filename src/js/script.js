@@ -410,6 +410,7 @@
 
       thisCart.dom.wrapper = element;
       thisCart.dom.toggleTrigger = element.querySelector(select.cart.toggleTrigger);
+      thisCart.dom.productList = element.querySelector(select.cart.productList);
     }
 
     initActions(){
@@ -422,9 +423,14 @@
     }
 
     add(menuProduct){
-      // const thisCart = this;
+      const thisCart = this;
 
       console.log('adding product', menuProduct);
+
+      const generatedHTML = templates.cartProduct(menuProduct);
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+      thisCart.dom.productList.appendChild(generatedDOM);
+    
     }
   }
 
