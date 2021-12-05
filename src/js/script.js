@@ -411,6 +411,10 @@
       thisCart.dom.wrapper = element;
       thisCart.dom.toggleTrigger = element.querySelector(select.cart.toggleTrigger);
       thisCart.dom.productList = element.querySelector(select.cart.productList);
+      thisCart.dom.deliveryFee = element.querySelector(select.cart.deliveryFee);
+      thisCart.dom.subtotalPrice = element.querySelector(select.cart.subtotalPrice);
+      thisCart.dom.totalPrice = element.querySelector(select.cart.totalPrice);
+      thisCart.dom.totalNumber = element.querySelector(select.cart.totalNumber);
     }
 
     initActions(){
@@ -439,20 +443,29 @@
     update(){
       const thisCart = this;
 
-      thisCart.deliveryFee = 0,
+      thisCart.deliveryFee = settings.cart.defaultDeliveryFee,
       thisCart.totalNumber = 0;
       thisCart.subtotalPrice = 0;
 
       for(const product of thisCart.products){
-        thisCart.totalNumber = thisCart.totalNumber + product.amount;
-        thisCart.subtotalPrice = thisCart.subtotalPrice + product.price;
+        thisCart.totalNumber += product.amount;
+        thisCart.subtotalPrice += product.price;
       }
 
       if(thisCart.totalNumber !== 0){
-        thisCart.deliveryFee =settings.cart.defaultDeliveryFee;
+        thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
       }
       // console.log(thisCart.deliveryFee, thisCart.totalNumber, thisCart.subtotalPrice, thisCart.totalPrice);
-      thisCart.totalPrice = thisCart.subtotalPrice +  thisCart.defaultDeliveryFee;
+      thisCart.totalPrice = thisCart.subtotalPrice +  thisCart.deliveryFee;
+      console.log('subtotalPrice', thisCart.subtotalPrice);
+      console.log('totalNumber', thisCart.totalNumber);
+      console.log('totalPrice', thisCart.totalPrice);
+
+      thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
+      thisCart.dom.subtotal.Price.innerHTML = thisCart.subtotalPrice;
+      thisCart.dom.amountWidget.innerHTML = thisCart.amountWidget;
+      thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
+      
     }
   }
 
@@ -461,15 +474,15 @@
       const thisCartProduct = this;
 
       thisCartProduct.id = menuProduct.id;
-      thisCartProduct.name = menuProduct.name;
       thisCartProduct.amount = menuProduct.amount;
-      thisCartProduct.priceSingle = menuProduct.priceSingle;
+      thisCartProduct.name = menuProduct.name;
       thisCartProduct.price = menuProduct.price;
+      thisCartProduct.priceSingle = menuProduct.priceSingle;
       thisCartProduct.params = menuProduct.params;
 
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget();
-      // console.log('this CartProduct', thisCartProduct);
+      // console.log('thisCartProduct', thisCartProduct);
     }
 
     getElements(element){
