@@ -1,4 +1,4 @@
-import {settings, select, classNames} from './settings.js';
+import { settings, select, classNames } from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
@@ -14,23 +14,22 @@ const app = {
 
     let pageMatchingHash = thisApp.pages[0].id;
 
-    for(let page of thisApp.pages){
-      if(page.id === idFromHash){
+    for (let page of thisApp.pages) {
+      if (page.id === idFromHash) {
         pageMatchingHash = page.id;
         break;
       }
     }
     thisApp.activatePage(pageMatchingHash);
 
-
-    for(let link of thisApp.navLinks){
-      link.addEventListener('click', function(event){
+    for (let link of thisApp.navLinks) {
+      link.addEventListener('click', function (event) {
         const clickedElement = this;
         event.preventDefault();
 
         /* get page id from href attribute */
         const id = clickedElement.getAttribute('href').replace('#', '');
-        
+
         /* run thisApp.activatePage with that id */
         thisApp.activatePage(id);
 
@@ -54,9 +53,9 @@ const app = {
       page.classList.toggle(classNames.pages.active, page.id === pageId);
     }
     /* add class 'active to matching links, remove from non-matching */
-    for(let link of thisApp.navLinks){
+    for (let link of thisApp.navLinks) {
       link.classList.toggle(
-        classNames.nav.active, 
+        classNames.nav.active,
         link.getAttribute('href') === '#' + pageId
       );
     }
@@ -110,7 +109,7 @@ const app = {
     });
   },
 
-  initBooking: function (){
+  initBooking: function () {
     const thisApp = this;
 
     thisApp.bookWidget = document.querySelector(select.containerOf.booking);
