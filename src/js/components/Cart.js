@@ -7,7 +7,7 @@ class Cart {
     const thisCart = this;
 
     thisCart.products = [];
-    console.log(thisCart.products);
+    // console.log(thisCart.products);
     thisCart.getElements(element);
     thisCart.initActions();
     // thisCart.add(menuProduct);
@@ -57,7 +57,7 @@ class Cart {
   add(menuProduct) {
     const thisCart = this;
 
-    console.log('adding product', menuProduct);
+    // console.log('adding product', menuProduct);
 
     const generatedHTML = templates.cartProduct(menuProduct);
     const generatedDOM = utils.createDOMFromHTML(generatedHTML);
@@ -102,7 +102,7 @@ class Cart {
     const thisCart = this;
 
     const indexOfRemovedProduct = thisCart.products.indexOf(removedProduct);
-    console.log('indexOfRemovedPorduct:', indexOfRemovedProduct);
+    // console.log('indexOfRemovedPorduct:', indexOfRemovedProduct);
 
     removedProduct.dom.wrapper.remove();
     thisCart.products.splice(indexOfRemovedProduct, 1);
@@ -124,7 +124,7 @@ class Cart {
       deliveryFee: thisCart.deliveryFee,
       products: [],
     };
-    console.log('payload:', payload);
+    // console.log('payload:', payload);
 
     for (let prod of thisCart.products) {
       payload.products.push(prod.getData());

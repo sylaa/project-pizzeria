@@ -59,7 +59,7 @@ class CartProduct {
     });
 
     thisCartProduct.dom.wrapper.dispatchEvent(event);
-    console.log(event);
+    // console.log(event);
   }
 
   initActions() {
