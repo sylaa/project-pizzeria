@@ -46,6 +46,7 @@ class BaseWidget {
     const thisWidget = this;
 
     thisWidget.dom.wrappper.innerHTML = thisWidget.value;
+  
   }
 
   announce() {
