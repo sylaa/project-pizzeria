@@ -148,9 +148,9 @@ class Booking {
     let allAvailable = false;
 
     if (
-      typeof thisBooking.booked[thisBooking.date] === 'undefined' ||
-      typeof thisBooking.booked[thisBooking.date][thisBooking.hour] ===
-        'undefined'
+      typeof thisBooking.booked[thisBooking.date] === 'undefined' 
+      ||
+      typeof thisBooking.booked[thisBooking.date][thisBooking.hour] ==='undefined'
     ) {
       allAvailable = true;
     }
@@ -187,6 +187,41 @@ class Booking {
     }
   }
 
+  sendBooking(){
+    const thisBooking = this;
+
+    const url = settings.db.url + '/' + settings.db.booking;
+    
+    const payload = {};
+
+    payload.data = thisBooking.dom.datePicker.value;
+    payload.hour = thisBooking.dom.hourPicker.value;
+    payload.table = thisBooking.dom.tableNull;
+    payload.duration = thisBooking.dom.hoursAmount.value;
+    payload.ppl = thisBooking.dom.peopleAmount.value;
+    payload.phone = thisBooking.dom.phone.value;
+    payload.address = thisBooking.dom.address.value;
+    payload.starters = [];
+    
+    for (let starter in thisBooking.dom.starters){ 
+      if (starter.checked){
+        payload.starters.push(starter.value);
+      }
+    }
+    thisBooking.sendBooking(url, payload);
+    thisBooking.makeBooked(payload.data, payload.hour, payload.duration, payload.table);
+  }
+
+  send(url, payload){
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    };
+    fetch(url, options);
+  }
 
   render(element) {
     const thisBooking = this;
