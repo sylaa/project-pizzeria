@@ -188,6 +188,12 @@
         opacity: 0.4;
       }
     }
+
+    &.selected {
+      background-color: green;
+      border: 1px solid lighten($color-dark, 70%);
+
+    }
   }
 
   [data-table='1'] {
