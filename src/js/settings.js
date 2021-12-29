@@ -107,7 +107,7 @@ export const settings = {
   datePicker: {
     maxDaysInFuture: 14,
   },
-  booking: {
+  bookings: {
     tableIdAttribute: 'data-table',
   },
   db: {
@@ -117,8 +117,8 @@ export const settings = {
     url: '//localhost:3131',
     // product: 'product',
     // order: 'order',
-    bookings: 'booking',
-    events: 'event',
+    booking: 'bookings',
+    event: 'events',
     dateStartParamKey: 'date_gte',
     dateEndParamKey: 'date_lte',
     notRepeatParam: 'repeat=false',
