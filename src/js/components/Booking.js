@@ -163,11 +163,11 @@ class Booking {
 
       if (
         !allAvailable &&
-        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) > -1
+        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) 
       ) {
-        table.classlist.add(classNames.booking.tableBooked);
+        table.classList.add(classNames.booking.tableBooked);
       } else {
-        table.classlist.remove(classNames.booking.tableBooked);
+        table.classList.remove(classNames.booking.tableBooked);
       }
     }
   }
