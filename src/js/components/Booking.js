@@ -156,7 +156,7 @@ class Booking {
     }
 
     for (let table of thisBooking.dom.tables) {
-      let tableId = table.getAttribute(settings.booking.tableIdAttribute);
+      let tableId = table.getAttribute(settings.bookings.tableIdAttribute);
       if (!isNaN(tableId)) {
         tableId = parseInt(tableId);
       }
@@ -180,7 +180,7 @@ class Booking {
 
     if(!thisBooking.selectedTable.includes(tableId)){
       thisBooking.selectedTable.push(tableId);
-      thisBooking.selectedTable.classList.add('selected');
+      event.target.classList.add('selected');
     } else {
       const removedTable = thisBooking.selectedTable.indexOf(tableId);
       thisBooking.selectedTable.splice(removedTable, 1);
