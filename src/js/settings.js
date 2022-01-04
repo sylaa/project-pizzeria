@@ -116,7 +116,7 @@ export const settings = {
     // url: '//localhost:3131',
     products: 'products',
     orders: 'orders',
-    url: '//localhost:3131',
+    url: '//' + window.location.hostname + (window.location.hostname=='localhost' ? ':3131' : ''),
     // product: 'product',
     // order: 'order',
     booking: 'bookings',
@@ -126,6 +126,7 @@ export const settings = {
     notRepeatParam: 'repeat=false',
     repeatParam: 'repeat_ne=false',
   },
+  
 };
 
 export const templates = {
