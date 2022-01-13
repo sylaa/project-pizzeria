@@ -175,41 +175,28 @@ class Booking {
   initTables(event) {
     const thisBooking = this;
 
-    const tableId = event.target.getAttribute('data-table');
-
-    event.target.classList.toggle('selected');
-    const activeTable = document.querySelector('.selected');
-
-    if (event.target.classList.contains('table')) {
-      if (!thisBooking.selectedTable.includes(tableId)) {
-        thisBooking.selectedTable.push(tableId);
-
-        // const activeTable = document.querySelector('.selected');
-      
-      } else if (activeTable !== null && activeTable !== event.target) {
-        // for(let table of thisBooking.dom.tables){
-        event.target.classList.remove('selected');
-        // }
-        const removedTable = thisBooking.selectedTable.indexOf(tableId);
-        thisBooking.selectedTable.splice(removedTable, 1);
+    if(event.target.classList.contains('table')){
+      if(!event.target.classList.contains(classNames.booking.tableBooked)){
+        const activeTable = document.querySelector('.selected');
+        // console.log(activeTable);
+        if(activeTable !== null && activeTable !== event.target){
+          thisBooking.removeTableSelection();
+          
+        }
+        event.target.classList.toggle('selected');
       }
-
-      // event.target.classList.toggle('selected');
-      
-      // } else {
-      //   const removedTable = thisBooking.selectedTable.indexOf(tableId);
-      //   thisBooking.selectedTable.splice(removedTable, 1);
-      // }
+      if(event.target.classList.contains(classNames.booking.tableBooked)) {
+        window.alert('Ten stolik jest już zajęty');
+      }
     }
-    console.log(thisBooking.selectedTable);
   }
 
-  // removeTableSelection(){
-  //   const thisBooking = this;
-  //   for(let table of thisBooking.dom.tables){
-  //     table.classList.remove('selected');
-  //   }
-  // }
+  removeTableSelection(){
+    const thisBooking = this;
+    for(let table of thisBooking.dom.tables){
+      table.classList.remove('selected');
+    }
+  }
 
   
 
