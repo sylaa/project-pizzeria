@@ -221,7 +221,7 @@ class Booking {
         payload.starters.push(starter.value);
       }
     }
-    thisBooking.sendBooking(url, payload);
+    thisBooking.send(url, payload);
     thisBooking.makeBooked(
       payload.data,
       payload.hour,
