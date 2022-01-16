@@ -55,8 +55,7 @@ const app = {
     }
     /* add class 'active to matching links, remove from non-matching */
     for (let link of thisApp.navLinks) {
-      link.classList.toggle(
-        classNames.nav.active,
+      link.classList.toggle(classNames.nav.active,
         link.getAttribute('href') === '#' + pageId
       );
     }

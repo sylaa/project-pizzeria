@@ -29,8 +29,9 @@ class Home {
       page.classList.toggle(classNames.pages.active, page.id === pageId);
     }
     for (let link of thisHome.navLinks) {
-      link.classList.toggle(classNames.nav.active);
-      link.getAttribute('href') == '#' + pageId;
+      link.classList.toggle(classNames.nav.active,
+        link.getAttribute('href') == '#' + pageId
+      );
     }
   }
   initLinks() {
