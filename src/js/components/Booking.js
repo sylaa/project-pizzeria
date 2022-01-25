@@ -106,7 +106,8 @@ class Booking {
             utils.dateToStr(loopDate),
             item.hour,
             item.duration,
-            item.table
+            item.table, 
+            this.updateDOM()
           );
         }
       }
@@ -211,24 +212,19 @@ class Booking {
     const thisBooking = this;
 
     const url = settings.db.url + '/' + settings.db.booking;
-    let selectedTable;
-
-    for (let table of thisBooking.dom.tables) {
-      if (table.classList.contains('selected')) {
-        selectedTable = table.getAttribute('data-table');
-      }
-    }
-    console.log(selectedTable);
 
     const formData = utils.serializeFormToObject(thisBooking.dom.form);
     console.log(formData);
 
     const payload = {
       date: formData.date[0],
-      table: selectedTable,
-      hour: formData.hour[0],
-      duration: formData.hours[0],
-      ppl: formData.people[0],
+      table: thisBooking.selectedTable[0],
+      // hour: formData.hour[0],
+      hour: utils.numberToHour(formData.hour[0]),
+      // duration: formData.hours[0],
+      duration: Number(formData.hours[0]),
+      // ppl: formData.people[0],
+      ppl: Number(formData.people[0]),
       phone: formData.phone[0],
       address: formData.address[0],
       starters: [],
@@ -244,15 +240,16 @@ class Booking {
     console.log(payload);
 
     thisBooking.send(url, payload);
-    thisBooking.makeBooked(
-      payload.date,
-      payload.hour,
-      payload.duration,
-      payload.table
-    );
+    // thisBooking.makeBooked(
+    //   payload.date,
+    //   payload.hour,
+    //   payload.duration,
+    //   payload.table
+    // );
   }
 
   send(url, payload) {
+    const thisBooking = this;
     const options = {
       method: 'POST',
       headers: {
@@ -260,7 +257,14 @@ class Booking {
       },
       body: JSON.stringify(payload),
     };
-    fetch(url, options);
+    fetch(url, options)
+      .then(thisBooking.makeBooked(
+        payload.date,
+        payload.hour,
+        payload.duration,
+        payload.table
+      ))
+      .then(this.removeTableSelection());
   }
 
   render(element) {
@@ -311,12 +315,15 @@ class Booking {
 
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
 
-    thisBooking.dom.datePicker.addEventListener('updated', function (event) {
-      thisBooking.initTables(event);
-    });
+    thisBooking.dom.datePicker.addEventListener('updated', function () {});
+
+    // thisBooking.dom.datePicker.addEventListener('updated', function (event) {
+    //   thisBooking.initTables(event);
+    // });
 
     thisBooking.dom.wrapper.addEventListener('updated', function () {
       thisBooking.updateDOM();
+      thisBooking.removeTableSelection();
     });
 
     thisBooking.dom.floorPlan.addEventListener('click', function (event) {
