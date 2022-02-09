@@ -50,7 +50,7 @@ export const select = {
     submit: '.booking-form [type="submit"]',
     phone: '.booking-form [name="phone"]',
     address: '.booking-form [name="address"]',
-    starters: '.booking-form [name="starters"]',
+    starters: '.booking-form input[name="starter"]',
   },
   nav: {
     links: '.main-nav a',
